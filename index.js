@@ -37,9 +37,32 @@ const questions = [
     },
 ];
 
+
+// Writing svg file using the filename, and data from inquirere responses
 function writeToFile(fileName, data) {
-    var content = generateLogo(data);
-    
+    var logo = generateLogo(data);
+    writeToFile(fileName,logo, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Generated logo.svg");
+    });
 }
 
+
+// Getting parameters for logo.svg
+function initialize() {
+console.log("Taking in parameters for logo");
+    inquirer.prompt(questions)
+
+    .then(function(data) {
+    var fileName = "logo.svg";
+    writeToFile(fileName,data);
+
+    });
+}
+
+
+// Starts the application
+initialize();
 
