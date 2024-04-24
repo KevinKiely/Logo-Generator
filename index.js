@@ -39,9 +39,12 @@ const questions = [
 
 
 // Writing svg file using the filename, and data from inquirere responses
+
+
 function writeToFile(fileName, data) {
     var logo = generateLogo(data);
-    writeToFile(fileName,logo, function(err) {
+
+    writeToFile(fileName, logo, function(err) {
         if (err) {
             return console.log(err);
         }
@@ -50,15 +53,46 @@ function writeToFile(fileName, data) {
 }
 
 
+
 // Getting parameters for logo.svg
 function initialize() {
 console.log("Taking in parameters for logo");
     inquirer.prompt(questions)
 
-    .then(function(data) {
-    var fileName = "logo.svg";
-    writeToFile(fileName,data);
 
+    //Takes in data from inquirer
+    .then(function(data) {
+
+    //Logo variable is created using imported generate logo function
+    var logo = generateLogo(data);
+
+    console.log("logo created");
+
+
+    // File is written using logo as the content
+    fs.writeFile('./final/logo.svg', logo, 
+    (err) => err ? console.log(err) : console.log("File saved to final folder"));
+
+    fs.appendFile('./final/logo.svg', logo, 
+    (err) => err ? console.log(err) : console.log("File saved to final folder"));
+
+    
+
+
+
+
+    // 
+
+    //
+
+
+
+
+    /*
+    var fileName = "logo.svg";
+
+    writeToFile(fileName,data);
+        */
     });
 }
 
