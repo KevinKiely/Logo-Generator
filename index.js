@@ -1,7 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
-const generateSVG = require('./')
+const generateLogo = require('./');
+
+const Triangle = require('./lib/shapes');
 
 
 // Array of questions for inquirer to use with .prompt
@@ -65,6 +67,8 @@ console.log("Taking in parameters for logo");
 
     //Logo variable is created using imported generate logo function
     var logo = generateLogo(data);
+
+    
 
     console.log("logo created");
 
