@@ -1,9 +1,9 @@
-const inquirer = require("inquirer");
-const fs = require("fs");
-const path = require("path");
-const generateLogo = require('./');
+const inquirer = require ("inquirer");
+const fs = require ("fs");
+const path = require ("path");
+const generateLogo = require ('./lib/generateLogo.js');
 
-const Triangle = require('./lib/shapes');
+const { Triangle, Square, Circle } = require('./lib/shapes.js');
 
 
 // Array of questions for inquirer to use with .prompt
@@ -40,66 +40,34 @@ const questions = [
 ];
 
 
-// Writing svg file using the filename, and data from inquirere responses
-
-
-function writeToFile(fileName, data) {
-    var logo = generateLogo(data);
-
-    writeToFile(fileName, logo, function(err) {
-        if (err) {
-            return console.log(err);
-        }
-        console.log("Generated logo.svg");
-    });
-}
-
-
 
 // Getting parameters for logo.svg
 function initialize() {
-console.log("Taking in parameters for logo");
+console.log('Taking in parameters for logo');
     inquirer.prompt(questions)
 
-
     //Takes in data from inquirer
-    .then(function(data) {
+    .then((responses) => {
 
     //Logo variable is created using imported generate logo function
-    var logo = generateLogo(data);
 
-    
+    var logo = function generateLogo(responses)
 
     console.log("logo created");
 
 
     // File is written using logo as the content
+
+    /*
     fs.writeFile('./final/logo.svg', logo, 
-    (err) => err ? console.log(err) : console.log("File saved to final folder"));
+    (err) => err ? console.log(err) : console.log("File created"));
+    */
 
     fs.appendFile('./final/logo.svg', logo, 
     (err) => err ? console.log(err) : console.log("File saved to final folder"));
 
-    
-
-
-
-
-    // 
-
-    //
-
-
-
-
-    /*
-    var fileName = "logo.svg";
-
-    writeToFile(fileName,data);
-        */
     });
 }
-
 
 // Starts the application
 initialize();
