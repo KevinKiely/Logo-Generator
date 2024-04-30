@@ -2,7 +2,6 @@ const inquirer = require ("inquirer");
 const fs = require ("fs");
 const path = require ("path");
 const generateLogo = require ('./lib/generateLogo.js');
-
 const { Triangle, Square, Circle } = require('./lib/shapes.js');
 
 
@@ -48,27 +47,29 @@ console.log('Taking in parameters for logo');
 
     //Takes in data from inquirer
     .then((responses) => {
+        var logo = generateLogo(responses);
 
     //Logo variable is created using imported generate logo function
 
-    var logo = function generateLogo(responses)
-
     console.log("logo created");
-
 
     // File is written using logo as the content
 
-    /*
     fs.writeFile('./final/logo.svg', logo, 
-    (err) => err ? console.log(err) : console.log("File created"));
-    */
-
-    fs.appendFile('./final/logo.svg', logo, 
-    (err) => err ? console.log(err) : console.log("File saved to final folder"));
-
+    (err) =>  {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("File saved to final folder");
+    }
+});
+    })
+    .catch((err) => {
+        console.log(`Error ${err} occured during logo generation`);
     });
-}
 
+}
+    
 // Starts the application
 initialize();
 
