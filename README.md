@@ -16,7 +16,8 @@ This project was made to produce simple logos and designs. Based on input from t
 
 
 ## Deployed Application URL
-N/A
+Video Demonstration
+https://drive.google.com/file/d/17MMssu6VivNskKNzu0MFFGvRF0H8l2ph/view
 
 ## Dependencies
 Inquirer, Node FS, Jest
